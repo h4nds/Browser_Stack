@@ -5,7 +5,7 @@ function HistoryDisplay({ backStack, forwardStack, navigateBack, navigateForward
         <div>
             <h3>Back Stack</h3>
             <ul>
-                    {backStackStack.map((page, index) => (
+                    {backStack.map((page, index) => (
                         <li key={index}>{page}</li>
                     ))}
                 </ul>
