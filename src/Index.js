@@ -1,20 +1,17 @@
-const http = require('http');
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './browserStack.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// index.js
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-// Import necessary modules
-
-// Define a port to listen on
-const PORT = process.env.PORT || 3000;
-
-// Create a server
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello, World!\n');
-});
-
-// Start the server
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/`);
-});
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals(console.log);

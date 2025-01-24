@@ -15,6 +15,7 @@ function App() {
            setForwardStack([]);
            setUrl(url);
        }
+    };
 
     const navigateBack = () => {
         const [current, ...rest] = backStack.slice().reverse();
@@ -51,6 +52,6 @@ function App() {
             />
         </div>
     );
-}}
+}
 
 export default App;
