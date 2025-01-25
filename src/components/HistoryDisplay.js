@@ -12,7 +12,6 @@ function HistoryDisplay({ backStack, forwardStack, navigateBack, navigateForward
             <button onClick={navigateBack} disabled={backStack.length === 0}>
                 Back
             </button>
-            <br /> 
             <h3>Forward Stack</h3>
             <ul>
                     {forwardStack.map((page, index) => (

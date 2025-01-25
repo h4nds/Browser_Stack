@@ -2,55 +2,65 @@ import React, { useState } from "react";
 import Navigation from "./components/Navigation";
 import HistoryDisplay from "./components/HistoryDisplay";
 import Controls from "./components/Controls";
+import "./App.css";
 
-function App() { 
+function App() {
     const [url, setUrl] = useState("");
+    const [currentPage, setCurrentPage] = useState("Home");
     const [backStack, setBackStack] = useState([]);
     const [forwardStack, setForwardStack] = useState([]);
-    
 
-    const navigateTo = (url) => {
-       if (url !== "") {
-           setBackStack((prev) => [url, ...prev]);
-           setForwardStack([]);
-           setUrl(url);
-       }
+    const navigateTo = (newUrl) => {
+        if (newUrl !== "") {
+            setBackStack((prev) => [...prev, currentPage]);
+            setCurrentPage(newUrl);
+            setForwardStack([]); // Clear forward history
+            setUrl(""); // Reset input field
+        }
     };
 
     const navigateBack = () => {
-        const [current, ...rest] = backStack.slice().reverse();
-        setBackStack(rest.reverse());
-        setForwardStack((prev) => [current, ...prev]);
-    };
+        if (backStack.length > 0) {
+            const newBackStack = [...backStack];
+            const previousPage = newBackStack.pop();
+            setBackStack(newBackStack);
+            setForwardStack((prev) => [currentPage, ...prev]);
+            setCurrentPage(previousPage);
+        }
+    }
 
     const navigateForward = () => {
-        const [current, ...rest] = forwardStack.slice().reverse();
-        setBackStack((prev) => [current, ...prev]);
-        setForwardStack(rest.reverse());
+        if (forwardStack.length > 0) {
+            const nextPage = forwardStack.shift();
+            setBackStack((prev) => [...prev, currentPage]);
+            setCurrentPage(nextPage);
+            setForwardStack([...forwardStack]); // Update state
+        }
     };
 
     const clearHistory = () => {
         setBackStack([]);
         setForwardStack([]);
+        setCurrentPage("Home");
     };
 
     return (
-        <div>
+        <div className="App">
+            <h1>Browser History Manager</h1>
             <Navigation url={url} setUrl={setUrl} navigateTo={navigateTo} />
-            <HistoryDisplay
-                backStack={backStack}
-                forwardStack={forwardStack}
-                navigateBack={navigateBack}
-                navigateForward={navigateForward}
-            />
+            <h2>Current Page: {currentPage}</h2>
+            
             <Controls
-                gobBack={navigateBack}
-                goFoward={navigateForward}
+                goBack={navigateBack}
+                goForward={navigateForward}
                 clearHistory={clearHistory}
                 backDisabled={backStack.length === 0}
                 forwardDisabled={forwardStack.length === 0}
             />
+
+            <HistoryDisplay backStack={backStack} forwardStack={forwardStack} />
         </div>
+
     );
 }
 

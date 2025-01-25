@@ -2,7 +2,7 @@ import React from "react";
 
 function Navigation({ url, setUrl, navigateTo }) {
     return (
-        <div style={{ marginBottom: "40px" }}>
+        <div className="naviagtion">
             <input
                 type="text"
                 placeholder="Enter URL Here"
@@ -10,7 +10,7 @@ function Navigation({ url, setUrl, navigateTo }) {
                 onChange={(e) => setUrl(e.target.value)}
                 style={{ marginRight: "10px" }}
             />
-            <button onClick={() => navigateTo(url)}>Go</button>
+            <button onClick={() => navigateTo(url)} className="navigate-button">Go</button>
         </div>
     );
 }
