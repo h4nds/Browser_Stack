@@ -1,7 +1,7 @@
 .App {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
-    color: #794141;
+    color: #631414c8;
     background-color: #beb8b8;
     padding: 20px;
 }
@@ -12,7 +12,7 @@ p {
     line-height: 1.5;
 }
 
-controls {
+.controls {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -47,14 +47,25 @@ controls {
     margin-bottom: 20px;
 }
 
-
-.history-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.history-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center the stacks */
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
+.history-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
 
+.back-stack {
+    margin-right: 10px; /* Reduce margin to bring stacks closer */
+}
 
-
-
+.forward-stack {
+    margin-left: 10px; /* Reduce margin to bring stacks closer */
+}
